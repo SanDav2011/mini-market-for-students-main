@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Школьный магазин</title>
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="container">
+        <h1>Магазин школьных товаров</h1>
+        <nav class="nav">
+          <a href="#catalog">Каталог</a>
+          <a href="#cart">Корзина</a>
+          <a href="#order">Оформление</a>
+        </nav>
+        <div class="cart-info">
+          Корзина: <span id="cart-count">0</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <section id="catalog">
+        <h2>Каталог</h2>
+
+        <div class="filters">
+          <div class="field">
+            <label for="search-input">Поиск</label>
+            <input id="search-input" type="text" placeholder="Название товара" />
+          </div>
+
+          <div class="field">
+            <label for="max-price-input">Макс. цена</label>
+            <input id="max-price-input" type="number" placeholder="500" />
+          </div>
+
+          <label class="checkbox">
+            <input id="in-stock-only" type="checkbox" />
+            Только в наличии
+          </label>
+
+          <div class="filter-btns">
+            <button id="apply-filters" type="button">Найти</button>
+            <button id="reset-filters" type="button" class="btn-secondary">Сбросить</button>
+          </div>
+        </div>
+
+        <p id="filter-error" class="error-text" role="alert"></p>
+        <div id="products" class="products-grid"></div>
+      </section>
+
+      <section id="cart">
+        <h2>Корзина</h2>
+
+        <div id="cart-items" class="cart-items">
+          <table id="cart-table" class="cart-table hidden">
+            <thead>
+              <tr>
+                <th>Товар</th>
+                <th>Цена за единицу</th>
+                <th>Количество</th>
+                <th>Сумма позиции</th>
+                <th>Действие</th>
+              </tr>
+            </thead>
+            <tbody id="cart-body">
+              <!-- Сюда добавляются строки товаров -->
+            </tbody>
+          </table>
+          <p id="empty-cart-message">Корзина пуста</p>
+        </div>
+
+        <p class="subtotal">Сумма: <span id="summ">0</span> ₸</p>
+      </section>
+
+      <section id="order">
+        <h2>Оформление заказа</h2>
+
+        <form id="order-form" novalidate>
+          <div class="field">
+            <label for="customer-name">Имя</label>
+            <input id="customer-name" name="customerName" type="text" required />
+          </div>
+
+          <div class="field">
+            <label for="customer-email">Email</label>
+            <input id="customer-email" name="customerEmail" type="email" required />
+          </div>
+
+          <div class="field">
+            <label for="delivery-type">Доставка</label>
+            <select id="delivery-type" name="deliveryType">
+              <option value="pickup">Самовывоз</option>
+              <option value="courier">Курьер</option>
+            </select>
+          </div>
+
+          <div id="address-row" class="field hidden">
+            <label for="address">Адрес</label>
+            <textarea id="address" name="address"></textarea>
+          </div>
+
+          <div class="field">
+            <label for="comment">Комментарий</label>
+            <textarea id="comment" name="comment"></textarea>
+          </div>
+
+          <label class="checkbox">
+            <input id="order-confirm" type="checkbox" name="confirm" required />
+            Я проверил состав заказа
+          </label>
+
+          <div class="order-total-block">
+            <p>Товары: <span id="order-summ">0</span> ₸</p>
+            <p>Доставка: <span id="delivery-cost">0</span> ₸</p>
+            <p class="total">Итого: <span id="order-total">0</span> ₸</p>
+          </div>
+
+          <button type="submit" class="btn-submit">Оформить заказ</button>
+          <p id="order-error" class="error-text"></p>
+        </form>
+
+        <div id="order-result"></div>
+      </section>
+    </main>
+
+    <footer class="container">
+      <p>Мини-магазин школьных товаров</p>
+    </footer>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
