@@ -169,6 +169,14 @@ button:disabled {
   border-radius: 10px;
 }
 
+.product-image {
+  width: 100%;
+  height: 180px;
+  object-fit: contain;
+  border-radius: 6px;
+  background: #f7f7f7;
+}
+
 .product-card h3 {
   margin: 0 0 8px;
 }
