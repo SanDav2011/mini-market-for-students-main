@@ -5,6 +5,7 @@ type Product = {
   name: string;
   price: number;
   inStock: boolean;
+  image: string;
   description?: string;
 };
 
@@ -23,12 +24,12 @@ type Order = {
 };
 
 const products: Product[] = [
-  { id: 1, name: "Тетрадь", price: 500, inStock: true, description: "Клетка, 48 листов" },
-  { id: 2, name: "Ручка", price: 200, inStock: false, description: "Синяя шариковая ручка" },
-  { id: 3, name: "Рюкзак", price: 8000, inStock: true, description: "Удобный рюкзак для учебников" },
-  { id: 4, name: "Карандаш", price: 100, inStock: true, description: "Простой карандаш" },
-  { id: 5, name: "Пенал", price: 2500, inStock: true, description: "Пенал на молнии" },
-  { id: 6, name: "Альбом", price: 700, inStock: true, description: "Альбом для рисования, 24 листа" },
+  { id: 1, name: "Тетрадь", price: 500, inStock: true, image: new URL("../pictures/notebook.jpg", import.meta.url).href, description: "Клетка, 48 листов" },
+  { id: 2, name: "Ручка", price: 200, inStock: false, image: new URL("../pictures/pen.jpg", import.meta.url).href, description: "Синяя шариковая ручка" },
+  { id: 3, name: "Рюкзак", price: 8000, inStock: true, image: new URL("../pictures/bag.jpg", import.meta.url).href, description: "Удобный рюкзак для учебников" },
+  { id: 4, name: "Карандаш", price: 100, inStock: true, image: new URL("../pictures/pencil.jpg", import.meta.url).href, description: "Простой карандаш" },
+  { id: 5, name: "Пенал", price: 2500, inStock: true, image: new URL("../pictures/suitcase.jpg", import.meta.url).href, description: "Пенал на молнии" },
+  { id: 6, name: "Альбом", price: 700, inStock: true, image: new URL("../pictures/albom.jpg", import.meta.url).href, description: "Альбом для рисования, 24 листа" },
 ];
 
 const cart: CartItem[] = [];
@@ -87,9 +88,13 @@ function renderProducts(): void {
   filtered.forEach((product) => {
     const card = document.createElement("article");
     card.className = "product-card";
+    const image = document.createElement("img");
+    image.className = "product-image";
+    image.src = product.image;
+    image.alt = product.name;
     const name = document.createElement("h3");
     name.textContent = product.name;
-    card.append(name);
+    card.append(image, name);
 
     if (product.description) {
       const description = document.createElement("p");
